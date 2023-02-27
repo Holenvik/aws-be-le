@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1",
+    "brand": "Skoda",
+    "name": "Rapid",
+    "price": 3000,
+    "description": "New car"
+  },
+  {
+    "id": "2",
+    "brand": "BMW",
+    "name": "X6",
+    "price": 3000,
+    "description": "New car"
+  },
+  {
+    "id": "3",
+    "brand": "Audi",
+    "name": "A6",
+    "price": 3000,
+    "description": "New car"
+  },
+  {
+    "id": "4",
+    "brand": "Volkswagen",
+    "name": "Passat ",
+    "price": 3000,
+    "description": "New car"
+  }
+]
