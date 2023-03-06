@@ -2,6 +2,7 @@ import type { AWS } from "@serverless/typescript";
 
 import getProductsList from "@functions/getProductsList";
 import getProductItem from "@functions/getProductItem";
+import createProductItem from "@functions/createProductItem";
 
 const serverlessConfiguration: AWS = {
   service: "product",
@@ -21,9 +22,18 @@ const serverlessConfiguration: AWS = {
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
       NODE_OPTIONS: "--enable-source-maps --stack-trace-limit=1000",
+      TABLE_NAME_PRODUCTS: "products",
+      TABLE_NAME_STOCKS: "stocks",
     },
+    iamRoleStatements: [
+      {
+        Effect: "Allow",
+        Action: "dynamodb:*",
+        Resource: ["*"],
+      },
+    ],
   },
-  functions: { getProductsList, getProductItem },
+  functions: { getProductsList, getProductItem, createProductItem },
   package: { individually: true },
   custom: {
     esbuild: {
@@ -38,9 +48,8 @@ const serverlessConfiguration: AWS = {
     },
 
     autoswagger: {
-      swaggerPath: "swagger",
-      host: "q11j9jr031.execute-api.us-east-1.amazonaws.com/dev",
-      typefiles: ["./src/model/Car.ts"],
+      basePath: "/dev",
+      typefiles: ["./src/model/product.ts", "./src/model/stock.ts"],
       apiType: "http",
     },
   },
