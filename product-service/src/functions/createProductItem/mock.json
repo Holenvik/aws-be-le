@@ -1,0 +1,7 @@
+{
+  "httpMethod": "POST",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": "{\"title\": \"Mazda 6\",\"description\": \"Cool car\",\"price\": 5000, \"count\": 15}"
+}

@@ -1,0 +1,73 @@
+{
+  "products": [
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "1s1" },
+          "title": { "S": "BMW X5" },
+          "description": { "S": "Good car" },
+          "price": { "N": "30000" },
+          "image": {
+            "S": "https://www.bmw.pl/content/dam/bmw/common/all-models/x-series/x5/2023/highlights/bmw-x-series-x5-sp-desktop.jpg"
+          }
+        }
+      }
+    },
+
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "1s2" },
+          "title": { "S": "BMW X6" },
+          "description": { "S": "Good car" },
+          "price": { "N": "40000" },
+          "image": {
+            "S": "https://hips.hearstapps.com/hmg-prod/images/2024-bmw-x6-113-1675791922.jpg?crop=0.704xw:0.528xh;0.179xw,0.279xh&resize=1200:*"
+          }
+        }
+      }
+    },
+
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "1s3" },
+          "title": { "S": "BMW 4" },
+          "description": { "S": "Good car" },
+          "price": { "N": "20000" },
+          "image": {
+            "S": "https://www.autocentrum.pl/ac-file/car-version/5f3501205871324ddd010e35.jpg"
+          }
+        }
+      }
+    },
+
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "1s4" },
+          "title": { "S": "BMW 3" },
+          "description": { "S": "Good car" },
+          "price": { "N": "10000" },
+          "image": {
+            "S": "https://www.bmw.pl/content/dam/bmw/common/all-models/3-series/sedan/2022/highlights/bmw-3-series-sedan-sp-desktop.jpg"
+          }
+        }
+      }
+    },
+
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "1s5" },
+          "title": { "S": "BMW 1" },
+          "description": { "S": "Good car" },
+          "price": { "N": "10000" },
+          "image": {
+            "S": "https://www.autocentrum.pl/ac-file/car-version/5d7633a4c74b3554756782a1.jpg"
+          }
+        }
+      }
+    }
+  ]
+}

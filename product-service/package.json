@@ -15,6 +15,7 @@
     "@middy/http-cors": "^4.2.5",
     "@middy/http-json-body-parser": "^3.4.0",
     "@types/jest": "^29.4.0",
+    "aws-sdk": "^2.1326.0",
     "jest": "^29.4.3",
     "ts-jest": "^29.0.5"
   },
