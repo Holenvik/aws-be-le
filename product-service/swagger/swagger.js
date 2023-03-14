@@ -25,11 +25,11 @@
         }
       }
     },
-    "/product/{id}": {
+    "/products/{id}": {
       "get": {
         "summary": "getProductItem",
         "description": "",
-        "operationId": "getProductItem.get.product/{id}",
+        "operationId": "getProductItem.get.products/{id}",
         "consumes": [
           "application/json"
         ],
@@ -50,44 +50,82 @@
           }
         }
       }
+    },
+    "/products/": {
+      "post": {
+        "summary": "createProductItem",
+        "description": "",
+        "operationId": "createProductItem.post.products/",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "200 response"
+          }
+        }
+      }
     }
   },
   "definitions": {
-    "Car": {
+    "Product": {
       "properties": {
         "id": {
-          "title": "Car.id",
+          "title": "Product.id",
           "type": "string"
         },
-        "brand": {
-          "title": "Car.brand",
-          "type": "string"
-        },
-        "name": {
-          "title": "Car.name",
+        "title": {
+          "title": "Product.title",
           "type": "string"
         },
         "price": {
-          "title": "Car.price",
+          "title": "Product.price",
           "type": "number"
         },
         "description": {
-          "title": "Car.description",
+          "title": "Product.description",
           "type": "string"
+        },
+        "count": {
+          "title": "Product.count",
+          "type": "number"
         }
       },
       "required": [
         "id",
-        "brand",
-        "name",
+        "title",
         "price",
-        "description"
+        "description",
+        "count"
       ],
       "additionalProperties": false,
-      "title": "Car",
+      "title": "Product",
+      "type": "object"
+    },
+    "Stock": {
+      "properties": {
+        "product_id": {
+          "title": "Stock.product_id",
+          "type": "string"
+        },
+        "count": {
+          "title": "Stock.count",
+          "type": "number"
+        }
+      },
+      "required": [
+        "product_id",
+        "count"
+      ],
+      "additionalProperties": false,
+      "title": "Stock",
       "type": "object"
     }
   },
   "securityDefinitions": {},
-  "host": "q11j9jr031.execute-api.us-east-1.amazonaws.com/dev"
+  "basePath": "/dev"
 };
