@@ -9,17 +9,9 @@
     "sourceMap": true,
     "target": "ES2020",
     "outDir": "lib",
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
   },
-  "include": [
-    "src/**/*.ts",
-    "serverless.ts",
-    "src/tableScripts/products/fillTable.js",
-    "src/tableScripts/products/fillTable.js",
-    "src/tableScripts/products/data.js",
-    "src/tableScripts/products/fillTable.js"
-  ],
+  "include": ["src/**/*.ts", "serverless.ts"],
   "exclude": [
     "node_modules/**/*",
     ".serverless/**/*",
