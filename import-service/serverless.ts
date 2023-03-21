@@ -19,8 +19,9 @@ const serverlessConfiguration: AWS = {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
       NODE_OPTIONS: "--enable-source-maps --stack-trace-limit=1000",
       S3_BUCKET_NAME: "holenvik-shop-catalog",
+      SQS: "https://sqs.us-east-1.amazonaws.com/${aws:accountId}/catalogItemsQueue",
+      REGION: "us-east-1",
     },
-
     iamRoleStatements: [
       {
         Action: [
@@ -33,6 +34,11 @@ const serverlessConfiguration: AWS = {
         ],
         Effect: "Allow",
         Resource: [`arn:aws:s3:::${process.env.S3_BUCKET_NAME}/*`],
+      },
+      {
+        Effect: "Allow",
+        Action: ["sqs:*"],
+        Resource: "arn:aws:sqs:us-east-1:704296470876:catalogItemsQueue",
       },
     ],
   },

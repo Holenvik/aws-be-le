@@ -1,6 +1,6 @@
 import AWS from "aws-sdk";
 
-AWS.config.update({ region: "us-east-1" });
+AWS.config.update({ region: process.env.REGION });
 
 const ddb = new AWS.DynamoDB();
 

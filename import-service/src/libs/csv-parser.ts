@@ -1,4 +1,5 @@
 import csv from "csv-parser";
+import { sendSQSMessage } from "./sqs";
 
 export const parseCsvStream = async (
   stream: NodeJS.ReadableStream
@@ -6,10 +7,10 @@ export const parseCsvStream = async (
   const parseResult = [];
   await new Promise((resolve, reject) => {
     stream
-      .pipe(csv())
-      .on("data", (data) => {
+      .pipe(csv({}))
+      .on("data", async (data) => {
         parseResult.push(data);
-        console.log("parseCsvStream onData: ", data);
+        await sendSQSMessage(parseResult);
       })
       .on("end", () => {
         console.log("parseCsvStream onEnd: ", parseResult);

@@ -1,0 +1,16 @@
+{
+  "Records": [
+    {
+      "title": "Volkswagen Golf",
+      "description": "Caaar",
+      "image": "https://profiauto.pl/blog/wp-content/uploads/2020/11/Golf-R.jpg",
+      "price": 20
+    },
+    {
+      "title": "Volkswagen Golf GT",
+      "description": "Caaar GT",
+      "image": "https://static.dw.com/image/50981744_303.jpg",
+      "price": 30
+    }
+  ]
+}
