@@ -24,7 +24,10 @@ const importFileParser = async (event: S3CreateEvent): Promise<void> => {
             Key,
           })
         );
-        await parseCsvStream(getObjectResult.Body as NodeJS.ReadableStream);
+        const result = await parseCsvStream(
+          getObjectResult.Body as NodeJS.ReadableStream
+        );
+        console.log("parseCsvStream result: " + result);
 
         const copyParams = {
           Bucket,

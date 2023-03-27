@@ -3,6 +3,7 @@ import type { AWS } from "@serverless/typescript";
 import getProductsList from "@functions/getProductsList";
 import getProductItem from "@functions/getProductItem";
 import createProductItem from "@functions/createProductItem";
+import catalogBatchProcess from "@functions/catalogBatchProcess";
 
 const serverlessConfiguration: AWS = {
   service: "product",
@@ -24,6 +25,13 @@ const serverlessConfiguration: AWS = {
       NODE_OPTIONS: "--enable-source-maps --stack-trace-limit=1000",
       TABLE_NAME_PRODUCTS: "products",
       TABLE_NAME_STOCKS: "stocks",
+      REGION: "us-east-1",
+      SNS_ARN: {
+        Ref: "SNSTopic",
+      },
+      SQS_ARN: {
+        Ref: "SQSQueue",
+      },
     },
     iamRoleStatements: [
       {
@@ -31,9 +39,66 @@ const serverlessConfiguration: AWS = {
         Action: "dynamodb:*",
         Resource: ["*"],
       },
+      {
+        Effect: "Allow",
+        Action: ["sqs: *"],
+        Resource: [{ "Fn::GetAtt": ["SQSQueue", "Arn"] }],
+      },
+      {
+        Effect: "Allow",
+        Action: ["sns: *", "sns:Publish"],
+        Resource: { Ref: "SNSTopic" },
+      },
     ],
   },
-  functions: { getProductsList, getProductItem, createProductItem },
+  resources: {
+    Resources: {
+      SQSQueue: {
+        Type: "AWS::SQS::Queue",
+        Properties: {
+          QueueName: "catalogItemsQueue",
+        },
+      },
+      SNSTopic: {
+        Type: "AWS::SNS::Topic",
+        Properties: {
+          TopicName: "createProductTopic",
+        },
+      },
+      SNSSubscriptionPriceUnder20: {
+        Type: "AWS::SNS::Subscription",
+        Properties: {
+          Endpoint: "kfiadosau@corelogic.com",
+          Protocol: "email",
+          TopicArn: {
+            Ref: "SNSTopic",
+          },
+          FilterPolicy: {
+            price: [{ numeric: ["<", 20] }],
+          },
+        },
+      },
+      SNSSubscriptionPriceOver20: {
+        Type: "AWS::SNS::Subscription",
+        Properties: {
+          Endpoint: "mandarinkajok@gmail.com",
+          Protocol: "email",
+          TopicArn: {
+            Ref: "SNSTopic",
+          },
+          FilterPolicy: {
+            price: [{ numeric: [">=", 20] }],
+          },
+        },
+      },
+    },
+  },
+  functions: {
+    getProductsList,
+    getProductItem,
+    createProductItem,
+    catalogBatchProcess,
+  },
   package: { individually: true },
   custom: {
     esbuild: {
